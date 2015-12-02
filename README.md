@@ -1,5 +1,5 @@
 # List Files
-## This is the README for your extension "listFiles" 
+
 Provides a list of files in your workspace that can be filtered and selected.
 
 ## How to install
@@ -43,4 +43,6 @@ Similarly you could configure the number of files displayed.
 }
 ```
         
-** Enjoy!**
+## License
+
+[MIT]()
