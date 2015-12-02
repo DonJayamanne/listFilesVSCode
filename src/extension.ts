@@ -16,12 +16,15 @@ export function activate(context: ExtensionContext) {
     }
 
     var disposable = commands.registerCommand('extension.listFilesToOpen', () => {
+        if (workspace.rootPath === null){
+            return;
+        }
         var config = workspace.getConfiguration("findFiles");
         var lengthToStripOff = workspace.rootPath.length + 1;
-        
+
         workspace.findFiles(<string>config.get("fileIncludeGlob"), <string>config.get("fileExcludeGlob"), <number>config.get("maxResults")).then(files=> {
             var displayFiles = files.map(file=> {
-                return { description: file.fsPath.substring(lengthToStripOff), label: getFileName(file.fsPath), filePath:file.fsPath };
+                return { description: file.fsPath.substring(lengthToStripOff), label: getFileName(file.fsPath), filePath: file.fsPath };
             });
             window.showQuickPick(displayFiles).then(val=> {
                 workspace.openTextDocument(val.filePath).then(d=> {
