@@ -3,7 +3,7 @@
 	"displayName": "List Files",
 	"description": "List all files in working directory and select one to open",
 	"version": "0.0.1",
-	"publisher": "donjayamanne",
+	"publisher": "Don Jayamanne",
 	"license":"SEE LICENSE IN LICENSE or README.MD",
 	"homepage":"https://github.com/DonJayamanne/listFilesVSCode/blob/master/README.md",
 	"repository": {
