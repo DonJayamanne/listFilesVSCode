@@ -46,6 +46,9 @@ Similarly you could configure the number of files displayed.
   }
 }
 ```
+## Source
+
+[Github](https://github.com/DonJayamanne/listFilesVSCode)
         
 ## License
 
