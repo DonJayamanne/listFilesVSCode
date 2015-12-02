@@ -2,8 +2,7 @@
 
 Provides a list of files in your workspace that can be filtered and selected.
 
-![Image of Command]
-(https://raw.githubusercontent.com/DonJayamanne/listFilesVSCode/master/images/command.png)
+![Image of Command](/command.png?raw=true "Command")
 
 ![Image of Command Executed with file list]
 (https://raw.githubusercontent.com/DonJayamanne/listFilesVSCode/master/images/list%20of%20files.png)
