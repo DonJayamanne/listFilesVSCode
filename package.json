@@ -4,6 +4,12 @@
 	"description": "List all files in working directory and select one to open",
 	"version": "0.0.1",
 	"publisher": "donjayamanne",
+	"license":"SEE LICENSE IN LICENSE or README.MD",
+	"homepage":"https://github.com/DonJayamanne/listFilesVSCode/blob/master/README.md",
+	"repository": {
+		"type":"git",
+		"url":"https://github.com/DonJayamanne/listFilesVSCode.git"
+	},
 	"engines": {
 		"vscode": "^0.10.1"
 	},
