@@ -2,6 +2,12 @@
 
 Provides a list of files in your workspace that can be filtered and selected.
 
+![Image of Command]
+(https://raw.githubusercontent.com/DonJayamanne/listFilesVSCode/master/images/command.png)
+
+![Image of Command Executed with file list]
+(https://raw.githubusercontent.com/DonJayamanne/listFilesVSCode/master/images/list%20of%20files.png)
+
 ## How to install
 * Install [Visual Studio Code](https://code.visualstudio.com/)
 * Open `View -> Command Palette... and type ext install listFiles`
