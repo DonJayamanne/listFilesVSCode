@@ -45,4 +45,4 @@ Similarly you could configure the number of files displayed.
         
 ## License
 
-[MIT]()
+[MIT](https://raw.githubusercontent.com/DonJayamanne/listFilesVSCode/master/LICENSE)
