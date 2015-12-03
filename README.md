@@ -50,6 +50,14 @@ Similarly you could configure the number of files displayed.
 
 [Github](https://github.com/DonJayamanne/listFilesVSCode)
         
+## Change Log
+
+### Version 0.0.3
+Updated chanage log
+
+### Version 0.0.2
+Fixed default setting for findFiles.fileExcludeGlob, to exclude node_modules directory.
+        
 ## License
 
 [MIT](https://raw.githubusercontent.com/DonJayamanne/listFilesVSCode/master/LICENSE)
