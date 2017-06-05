@@ -2,7 +2,7 @@
 	"name": "listFiles",
 	"displayName": "List Files",
 	"description": "List all files in working directory and select one to open",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"publisher": "donjayamanne",
 	"license":"MIT",
 	"homepage":"https://github.com/DonJayamanne/listFilesVSCode/blob/master/README.md",
@@ -24,7 +24,7 @@
 	"activationEvents": [
 		"onCommand:extension.listFilesToOpen"
 	],
-	"main": "./out/src/extension",
+    "main": "./out/src/extension",
 	"contributes": {
 		"commands": [{
 			"command": "extension.listFilesToOpen",
@@ -46,7 +46,7 @@
 					},
 					"findFiles.fileExcludeGlob": {
 						"type": "string",
-						"default": "**/node_modules/**",
+						"default": "{**/node_modules/**,**/bower_components/**,**/dist/**,**/build/**,**/.vscode/**,**/_output/**,**/*.min.*,**/*.map,**/out/**,**/samples/**}",
 						"description": "A glob pattern that defines files and folders to exclude."
 					},
 					"findFiles.maxResults": {
@@ -57,12 +57,17 @@
 				}
 			}
 	},
-	"scripts": {
-		"vscode:prepublish": "node ./node_modules/vscode/bin/compile",
-		"compile": "node ./node_modules/vscode/bin/compile -watch -p ./"
-	},
-	"devDependencies": {
-		"typescript": "^1.6.2",
-		"vscode": "0.10.x"
-	}
+    "scripts": {
+        "vscode:prepublish": "tsc -p ./",
+        "compile": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.0.3",
+        "vscode": "^1.0.0",
+        "mocha": "^2.3.3",
+        "@types/node": "^6.0.40",
+        "@types/mocha": "^2.2.32"
+    }
 }
