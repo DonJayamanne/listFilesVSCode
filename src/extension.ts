@@ -1,36 +1,47 @@
+'use strict';
 // The module 'vscode' contains the VS Code extensibility API
-// Import the necessary extensibility types to use in your code below
-import {window, Uri, workspace, commands, Disposable, ExtensionContext, StatusBarAlignment, StatusBarItem, TextDocument} from 'vscode';
+// Import the module and reference it with the alias vscode in your code below
+import * as vscode from 'vscode';
+const path = require('path');
 
 // This method is called when your extension is activated. Activation is
 // controlled by the activation events defined in package.json.
-export function activate(context: ExtensionContext) {
-    function getFileName(file: string): string {
-        var forwardSlash = file.lastIndexOf("/");
-        var backSlash = file.lastIndexOf("\\");
-        if (forwardSlash === -1 && backSlash === -1) {
-            return file;
-        }
+export function activate(context: vscode.ExtensionContext) {
 
-        return file.substring((forwardSlash > backSlash) ? forwardSlash + 1 : backSlash + 1);
-    }
-
-    var disposable = commands.registerCommand('extension.listFilesToOpen', () => {
-        if (workspace.rootPath === null){
+    const disposable = vscode.commands.registerCommand('extension.listFilesToOpen', () => {
+        if (vscode.workspace.rootPath === null){
             return;
         }
-        var config = workspace.getConfiguration("findFiles");
-        var lengthToStripOff = workspace.rootPath.length + 1;
+        const config = vscode.workspace.getConfiguration("findFiles"),
+            lengthToStripOff = vscode.workspace.rootPath.length + 1,
+            activeEditor = vscode.window.activeTextEditor,
+            activeColumn = (activeEditor) ? activeEditor.viewColumn : 1;
 
-        workspace.findFiles(<string>config.get("fileIncludeGlob"), <string>config.get("fileExcludeGlob"), <number>config.get("maxResults")).then(files=> {
-            var displayFiles = files.map(file=> {
-                return { description: file.fsPath.substring(lengthToStripOff), label: getFileName(file.fsPath), filePath: file.fsPath };
-            });
-            window.showQuickPick(displayFiles).then(val=> {
-                workspace.openTextDocument(val.filePath).then(d=> {
-                    window.showTextDocument(d);
+        vscode.workspace.findFiles(<string>config.get("fileIncludeGlob"), <string>config.get("fileExcludeGlob"), <number>config.get("maxResults")).then(files => {
+            const displayFiles = files
+                .map(file => {
+                    const filePath = file.fsPath,
+                        label = path.basename(filePath);
+                    return { 
+                        label: label, 
+                        description: filePath.slice(lengthToStripOff, -label.length), 
+                        filePath: filePath
+                    };
+                });
+            vscode. window.showQuickPick(displayFiles).then(val=> {
+                if (!val) return;
+                vscode.workspace.openTextDocument(val.filePath).then(d=> {
+                    vscode.window.showTextDocument(d, activeColumn);
                 });
             });
         });
     });
+
+    // Add to a list of disposables which are disposed when this extension is deactivated.
+    context.subscriptions.push(disposable);
+
+}
+
+// This method is called when your extension is deactivated
+export function deactivate() {
 }
